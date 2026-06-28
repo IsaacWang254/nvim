@@ -10,12 +10,33 @@ Slate and Chalk were adapted from [Ghostex](https://github.com/maddada/Ghostex).
 - Git
 - A Nerd Font, such as JetBrainsMono Nerd Font
 
-## Install
+## Install Neovim
+
+macOS with Homebrew:
+
+```sh
+brew install neovim git
+```
+
+Windows with winget:
+
+```powershell
+winget install Neovim.Neovim
+winget install Git.Git
+```
+
+Verify Neovim is available:
+
+```sh
+nvim --version
+```
+
+## Install Config
 
 Clone this config to Neovim's config directory:
 
 ```sh
-git clone <repo-url> ~/.config/nvim
+git clone https://github.com/IsaacWang254/nvim ~/.config/nvim
 ```
 
 Open Neovim once to bootstrap `lazy.nvim` and install plugins:
