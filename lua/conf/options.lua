@@ -1,18 +1,13 @@
 local options = {
-  backup = false,
   clipboard = "unnamedplus",
   cmdheight = 2,
   completeopt = { "menuone", "noselect" } ,
-  conceallevel = 0,
   fileencoding = "utf-8",
-  hlsearch = true,
-  incsearch = true,
   ignorecase = true,
   -- Floor for searching if fff's binary ever fails to load: :grep still
   -- works, and lands results in the quickfix list.
   grepprg = "rg --vimgrep --smart-case",
   grepformat = "%f:%l:%c:%m",
-  ro = false,
   mouse = "a",
   pumheight = 10,
   showmode = false,
@@ -23,23 +18,18 @@ local options = {
   splitright = true,
   swapfile = false,
   termguicolors = true,
-  timeoutlen = 1000,
   undofile = true,
   updatetime = 300,
   writebackup = false,
   expandtab = true,
   shiftwidth = 4,
   tabstop = 4,
-  cursorline = false,
   number = true,
   relativenumber = true,
-  numberwidth = 4,
   signcolumn = "yes",
   wrap = false,
   scrolloff = 4,
   sidescrolloff = 4,
-  --guifont = "Cascadia_Mono:h10",
-  guifont = "JetBrainsMono_Nerd_Font:h11",
 }
 
 for k, v in pairs(options) do
@@ -59,7 +49,14 @@ vim.api.nvim_create_autocmd("FileType", {
     group = "FileTypeSpecific",
 })
 
-vim.cmd("autocmd BufEnter * set formatoptions-=cro")
-vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+-- Stop Neovim continuing comment leaders onto the next line. Was two
+-- overlapping `:autocmd` strings outside any group, so re-sourcing this file
+-- stacked duplicates every time.
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("FormatOptions", { clear = true }),
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
 
 vim.opt.shortmess:append "c"

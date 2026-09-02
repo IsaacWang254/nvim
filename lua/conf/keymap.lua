@@ -28,7 +28,6 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
---keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +1<CR>", opts)
@@ -42,11 +41,6 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Insert --
 -- Mashing any two of hjkl leaves insert mode -- see conf/escape.lua
-
--- Visual --
--- Stay in indent mode
--- keymap("v", "<", "<gv", opts)
--- keymap("v", ">", ">gv", opts)
 
 keymap("n", "Q", "<nop>", opts)
 
