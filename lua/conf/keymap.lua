@@ -41,8 +41,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Insert --
--- Press jk fast to enter
--- keymap("i", "jk", "<ESC>", opts)
+-- Mashing any two of hjkl leaves insert mode -- see conf/escape.lua
 
 -- Visual --
 -- Stay in indent mode
