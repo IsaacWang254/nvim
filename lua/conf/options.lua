@@ -8,6 +8,10 @@ local options = {
   hlsearch = true,
   incsearch = true,
   ignorecase = true,
+  -- Floor for searching if fff's binary ever fails to load: :grep still
+  -- works, and lands results in the quickfix list.
+  grepprg = "rg --vimgrep --smart-case",
+  grepformat = "%f:%l:%c:%m",
   ro = false,
   mouse = "a",
   pumheight = 10,
