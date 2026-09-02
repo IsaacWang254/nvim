@@ -1,6 +1,6 @@
 # Neovim Config
 
-Personal Neovim config using `lazy.nvim`, LSP, completion, Telescope, nvim-tree, Tree-sitter, and local Slate/Chalk themes.
+Personal Neovim config using `lazy.nvim`, LSP, completion, [fff](https://github.com/dmtrKovalenko/fff) for file and content search, Tree-sitter, and local Slate/Chalk themes.
 
 Slate and Chalk were adapted from [Ghostex](https://github.com/maddada/Ghostex).
 
