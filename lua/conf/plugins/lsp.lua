@@ -44,26 +44,23 @@ return {
 
     require("mason").setup()
 
-    -- Mason-lspconfig setup
+    -- nvim-cmp advertises more than Neovim's built-in defaults (snippet and
+    -- resolve support), and servers only get that if it is sent at handshake.
+    -- `vim.lsp.config("*", ...)` is the 0.11+ way to apply it to every server.
+    --
+    -- This used to run inside a mason-lspconfig `handlers` entry. That option
+    -- was removed in mason-lspconfig v2, so the block was silently dead and no
+    -- server ever saw cmp's capabilities. Must be set before servers enable.
+    vim.lsp.config("*", {
+      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    })
+
     require("mason-lspconfig").setup({
       ensure_installed = servers,
-      handlers = {
-        -- Default handler for automatically configuring installed servers
-        function(server_name)
-          local capabilities = require("cmp_nvim_lsp").default_capabilities()
-          require("lspconfig")[server_name].setup({
-            capabilities = capabilities,
-          })
-        end,
-
-        -- You can add custom handlers for specific servers here
-        -- For example:
-        -- ts_ls = function()
-        --   require("lspconfig").ts_ls.setup({
-        --     capabilities = require("cmp_nvim_lsp").default_capabilities(),
-        --   })
-        -- end,
-      },
+      -- Defaults to enabling *everything* installed under mason, not just the
+      -- list above -- which meant stylua was attaching to Lua buffers as an LSP
+      -- client. Gate it to the servers actually declared here.
+      automatic_enable = servers,
     })
 
     local cmp = require("cmp")
