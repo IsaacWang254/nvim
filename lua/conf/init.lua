@@ -1,4 +1,3 @@
-require "conf.compat"
 require "conf.options"
 vim.cmd.colorscheme "slate"
 require "conf.keymap"
