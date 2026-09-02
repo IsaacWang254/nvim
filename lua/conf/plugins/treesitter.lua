@@ -31,10 +31,26 @@ return {
     })
 
     vim.api.nvim_create_user_command("TSInstallConfigured", function()
-      ts.install(ensure_installed)
+      ts.install(ensure_installed, { summary = true })
     end, {
-      desc = "Install configured Tree-sitter parsers",
+      desc = "Install every configured Tree-sitter parser",
     })
+
+    -- `build = ":TSUpdate"` only updates parsers that already exist, and
+    -- ensure_installed is just a list -- nothing acts on it. Without this, a
+    -- fresh clone has zero parsers and no highlighting until someone remembers
+    -- to run :TSInstallConfigured. Install whatever is missing instead.
+    --
+    -- Scheduled so a cold machine compiling parsers does not block startup.
+    vim.schedule(function()
+      local installed = ts.get_installed("parsers")
+      local missing = vim.tbl_filter(function(lang)
+        return not vim.tbl_contains(installed, lang)
+      end, ensure_installed)
+      if #missing > 0 then
+        ts.install(missing, { summary = true })
+      end
+    end)
 
     -- Highlighting is handled by Neovim directly in the rewrite; enable it per-buffer.
     vim.api.nvim_create_autocmd("FileType", {
