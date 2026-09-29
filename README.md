@@ -1,8 +1,8 @@
 # Neovim Config
 
-Personal Neovim config using `lazy.nvim`, LSP, completion, [fff](https://github.com/dmtrKovalenko/fff) for file and content search, Tree-sitter, and local Slate/Chalk themes.
+Personal Neovim config using `lazy.nvim`, LSP, completion, [fff](https://github.com/dmtrKovalenko/fff) for file and content search, Tree-sitter, and the [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) theme (hard contrast, dark) to match the terminal's Gruvbox Dark Hard.
 
-Slate and Chalk were adapted from [Ghostex](https://github.com/maddada/Ghostex).
+Local Slate/Chalk themes are also kept as alternates; they were adapted from [Ghostex](https://github.com/maddada/Ghostex).
 
 ## Requirements
 
@@ -55,16 +55,15 @@ Mason will manage the configured LSP servers from `lua/conf/plugins/lsp.lua`.
 
 ## Themes
 
-The default theme is `slate`:
+The default theme is [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
+with `contrast = "hard"` and a dark background — configured in
+`lua/conf/plugins/gruvbox.lua` to match the terminal's Gruvbox Dark Hard.
+
+The local Slate/Chalk themes remain available as alternates:
 
 ```vim
 :colorscheme slate
-```
-
-The matching light theme is also available:
-
-```vim
 :colorscheme chalk
 ```
 
-Both themes are local ports adapted from Ghostex's bundled themes.
+Both are local ports adapted from Ghostex's bundled themes.

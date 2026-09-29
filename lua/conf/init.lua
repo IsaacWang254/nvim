@@ -1,5 +1,4 @@
 require "conf.options"
-vim.cmd.colorscheme "slate"
 require "conf.keymap"
 require "conf.escape"
 require "conf.lazy_init"
