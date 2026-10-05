@@ -1,6 +1,6 @@
 # Neovim Config
 
-Personal Neovim config using `lazy.nvim`, LSP, completion, [fff](https://github.com/dmtrKovalenko/fff) for file and content search, Tree-sitter, and the [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) theme (hard contrast, dark) to match the terminal's Gruvbox Dark Hard.
+Personal Neovim config using `lazy.nvim`, LSP, completion, [fff](https://github.com/dmtrKovalenko/fff) for file and content search, Tree-sitter, and a local Vercel colorscheme (`colors/vercel.lua`) that follows the terminal's light/dark appearance.
 
 Local Slate/Chalk themes are also kept as alternates; they were adapted from [Ghostex](https://github.com/maddada/Ghostex).
 
@@ -55,9 +55,10 @@ Mason will manage the configured LSP servers from `lua/conf/plugins/lsp.lua`.
 
 ## Themes
 
-The default theme is [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
-with `contrast = "hard"` and a dark background — configured in
-`lua/conf/plugins/gruvbox.lua` to match the terminal's Gruvbox Dark Hard.
+The default theme is the local `colors/vercel.lua` (Geist palette, light and
+dark), set in `lua/conf/init.lua`. It picks its palette from `'background'`,
+which Neovim updates from the terminal — so with Ghostty following the macOS
+appearance, Neovim does too. `:set background=light` / `dark` forces one.
 
 The local Slate/Chalk themes remain available as alternates:
 
